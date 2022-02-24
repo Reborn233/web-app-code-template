@@ -1,7 +1,8 @@
 /**
  * @name autoRegistryComponents
  * @description 按需加载，自动引入组件
- */
+*/
+import { VantResolver } from 'unplugin-vue-components/resolvers';
 import Components from 'unplugin-vue-components/vite';
 
 export const autoRegistryComponents = () => {
@@ -13,6 +14,8 @@ export const autoRegistryComponents = () => {
     extensions: ['vue'],
     // search for subdirectories
     deep: true,
+    // resolvers for custom components
+    resolvers: [VantResolver({ importStyle: 'css' })],
 
     // generate `components.d.ts` global declarations,
     // also accepts a path for custom filename
