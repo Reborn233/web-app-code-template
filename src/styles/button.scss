@@ -1,0 +1,10 @@
+.app-button {
+  border-radius: 20px;
+  border: none;
+  padding: 8px 24px;
+}
+.app-button__primary {
+  background-color: $PRIMARY;
+  color: #fff;
+  width: 300px;
+}
