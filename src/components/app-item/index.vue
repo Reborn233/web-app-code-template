@@ -2,29 +2,26 @@
   <div class="app-item">
     <div class="app-item__label"
          :style="{width: `${labelWidth}px`}">{{label}}</div>
-    <div class="app-item__value">{{value}}</div>
+    <div class="app-item__value"
+         :class="align">{{value}}</div>
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue'
-export default defineComponent({
-  name: 'appItem',
-  props: {
-    label: String,
-    value: String,
-    labelWidth: {
-      type: Number,
-      default: 150
-    },
-    align: {
-      type: String,
-      default: 'left'
-    }
+<script setup lang="ts">
+import { defineProps } from 'vue'
+defineProps({
+  label: String,
+  value: String,
+  labelWidth: {
+    type: Number,
+    default: 150
   },
-  setup(props, { emit }) {
-
-    return {}
+  align: {
+    type: String,
+    validator(val: string): boolean {
+      return ['left', 'center', 'right'].indexOf(val) !== -1;
+    },
+    default: 'left'
   }
 })
 </script>
@@ -48,5 +45,14 @@ export default defineComponent({
   word-break: normal;
   word-wrap: break-word;
   color: $TEXT-COLOR;
+  &.left {
+    text-align: left;
+  }
+  &.center {
+    text-align: center;
+  }
+  &.right {
+    text-align: right;
+  }
 }
 </style>

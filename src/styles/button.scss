@@ -2,9 +2,16 @@
   border-radius: 20px;
   border: none;
   padding: 8px 24px;
+  &:disabled {
+    background-color: $PRIMARY-0;
+    pointer-events: none;
+  }
 }
 .app-button__primary {
   background-color: $PRIMARY;
   color: #fff;
   width: 300px;
+  &:active {
+    background-color: $PRIMARY-DARK;
+  }
 }

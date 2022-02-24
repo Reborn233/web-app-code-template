@@ -12,22 +12,17 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue'
-export default defineComponent({
-  name: 'appSection',
-  props: {
-    title: String
-  },
-  setup(props, { emit }) {
-    return {}
-  }
+<script setup lang="ts">
+import { defineProps } from 'vue'
+defineProps({
+  title: String
 })
 </script>
 
 <style lang="scss" scoped>
 .app-section {
   padding: 0 12px;
+  padding-left: 0;
 }
 .app-section__hd {
   position: relative;

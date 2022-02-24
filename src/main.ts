@@ -1,13 +1,13 @@
 import { createApp } from 'vue'
 import App from './App.vue'
-import router from './router'
+import { router } from './router'
 import 'lib-flexible'
-import { createPinia } from 'pinia'
+import { store } from './store';
+import './router/permission';
+import { setupGlobDirectives } from './directives';
 import './styles/index.scss'
-
-const pinia = createPinia()
 const app = createApp(App)
-
-app.use(pinia)
+setupGlobDirectives(app)
+app.use(store)
 app.use(router)
 app.mount('#app')

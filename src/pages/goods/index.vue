@@ -22,7 +22,7 @@
     </div>
     <div class="action">
       <button class="app-button app-button__primary"
-              bindtap="clickSubscribe">立即订阅</button>
+              @click="clickBtn">立即订阅</button>
     </div>
   </div>
 </template>
@@ -47,6 +47,10 @@ const productInfo: IGoods = reactive({
   orderAmt: 15,
   cycleDesc: '月'
 })
+
+const clickBtn = () => {
+  console.log('clickBtn')
+}
 
 </script>
 
