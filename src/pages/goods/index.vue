@@ -29,39 +29,12 @@
 </template>
 
 <script setup lang="ts">
-import { Ref } from 'vue'
-import { api_queryGoodsById } from '/@/apis/goods'
-import { IGoods } from '/@/apis/goods/mode'
-
-const loading = ref(false)
-const goods: Ref<IGoods> = ref({
-  productId: 0,
-  orderNo: '',
-  goodsName: '',
-  goodsDesc: '',
-  orderAmt: 0,
-  cycleDesc: ''
-})
-
-const queryGoods = async (id: number) => {
-  try {
-    loading.value = true
-    const _goods = await api_queryGoodsById(id)
-    goods.value = _goods
-  } catch (error) {
-
-  }
-  loading.value = false
-}
-
-onMounted(() => {
-  queryGoods(1)
-})
+import { useGoods } from './query'
+const { goods, loading, queryGoodsById } = useGoods()
 
 const clickBtn = () => {
-  queryGoods(1)
+  queryGoodsById(1)
 }
-
 
 </script>
 

@@ -1,5 +1,5 @@
 export interface IGoods {
-  productId: number,
+  productId: number | null,
   orderNo: string,
   goodsName: string,
   goodsDesc: string,

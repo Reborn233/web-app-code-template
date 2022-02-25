@@ -26,7 +26,7 @@ const updated = (el: Element, binding: DirectiveBinding<any>) => {
 }
 
 const unmounted = (el: Element, binding: DirectiveBinding<any>) => {
-  if (!instance) return
+  if (!instance || !instance.$el) return
   el.removeChild(instance.$el)
   instance = null
 }
