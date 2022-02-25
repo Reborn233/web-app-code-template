@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { isString } from './common'
+import { isString } from './is'
 import { Toast } from 'vant'
 import { ResultEnum, ResponseTypeEnum } from '../enums/http-enums'
 import { Result } from '/#/axios'
@@ -60,3 +60,5 @@ http.interceptors.response.use(
     return Promise.reject(error);
   }
 )
+
+export default http

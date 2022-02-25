@@ -1,22 +1,23 @@
 <template>
-  <div class="page">
+  <div class="page"
+       v-loading='loading'>
     <div class="page__hd">
       <div class="page__title">
         ￥
-        <text class="amount">{{productInfo.orderAmt}}</text>
+        <text class="amount">{{goods.orderAmt}}</text>
         /月
       </div>
     </div>
     <div class="app-items">
       <app-section title='订单信息'>
         <app-item label='订单编号'
-                  :value='productInfo.orderNo'
+                  :value='goods.orderNo'
                   align='right'></app-item>
         <app-item label='商品名称'
-                  :value='productInfo.goodsName'
+                  :value='goods.goodsName'
                   align='right'></app-item>
         <app-item label='商品描述'
-                  :value='productInfo.goodsDesc'
+                  :value='goods.goodsDesc'
                   align='right'></app-item>
       </app-section>
     </div>
@@ -28,29 +29,39 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, Ref } from 'vue';
+import { Ref } from 'vue'
+import { api_queryGoodsById } from '/@/apis/goods'
+import { IGoods } from '/@/apis/goods/mode'
 
-interface IGoods {
-  productId: number,
-  orderNo: string,
-  goodsName: string,
-  goodsDesc: string,
-  orderAmt: number,
-  cycleDesc: string
+const loading = ref(false)
+const goods: Ref<IGoods> = ref({
+  productId: 0,
+  orderNo: '',
+  goodsName: '',
+  goodsDesc: '',
+  orderAmt: 0,
+  cycleDesc: ''
+})
+
+const queryGoods = async (id: number) => {
+  try {
+    loading.value = true
+    const _goods = await api_queryGoodsById(id)
+    goods.value = _goods
+  } catch (error) {
+
+  }
+  loading.value = false
 }
 
-const productInfo: IGoods = reactive({
-  productId: 3,
-  orderNo: 'OD_1641550505984',
-  goodsName: '车载87号皮肤',
-  goodsDesc: '按月付费套餐-哪吒汽车车载皮肤自然系列',
-  orderAmt: 15,
-  cycleDesc: '月'
+onMounted(() => {
+  queryGoods(1)
 })
 
 const clickBtn = () => {
-  console.log('clickBtn')
+  queryGoods(1)
 }
+
 
 </script>
 

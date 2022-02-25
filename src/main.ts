@@ -8,6 +8,12 @@ import { setupGlobDirectives } from './directives';
 import './styles/index.scss'
 const app = createApp(App)
 setupGlobDirectives(app)
+
+if (import.meta.env.VITE_APP_ENV === 'development') {
+  import('../mock/index')
+}
+
+
 app.use(store)
 app.use(router)
 app.mount('#app')

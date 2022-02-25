@@ -13,12 +13,16 @@ body {
   padding: 0;
 }
 .page {
+  position: relative;
   background-color: #f8f8f8;
   font-size: 16px;
   font-family: 'PingFangSC Regular';
   box-sizing: border-box;
   height: 100%;
   color: $TEXT-COLOR;
+}
+.page {
+  overflow: hidden;
 }
 .bg-white {
   background-color: #fff;
@@ -29,6 +33,7 @@ body {
 }
 
 .page__hd {
+  position: relative;
   padding: 40px;
 }
 
@@ -55,10 +60,6 @@ body {
 
 .text-center {
   text-align: center;
-}
-
-.page {
-  overflow: hidden;
 }
 
 .bg-white {
@@ -101,4 +102,23 @@ body {
   top: 50%;
   transform: translateY(-50%);
   color: $ERROR-COLOR;
+}
+
+.app-loading-mask {
+  position: absolute;
+  z-index: 2000;
+  background-color: hsla(0, 0%, 100%, 0.9);
+  margin: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transition: opacity 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .van-loading__spinner {
+    color: $PRIMARY;
+  }
 }
