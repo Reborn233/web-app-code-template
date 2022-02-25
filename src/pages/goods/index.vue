@@ -1,6 +1,5 @@
 <template>
-  <div class="page"
-       v-loading='loading'>
+  <app-page ref="page">
     <div class="page__hd">
       <div class="page__title">
         ￥
@@ -25,7 +24,7 @@
       <button class="app-button app-button__primary"
               @click="clickBtn">立即订阅</button>
     </div>
-  </div>
+  </app-page>
 </template>
 
 <script setup lang="ts">
@@ -33,14 +32,10 @@ import { useGoods } from './query'
 import { useMessage } from '/@/hooks/useMessage'
 const { goods, loading, queryGoodsById } = useGoods()
 
-const { Dialog } = useMessage()
+const { notify } = useMessage()
 
 const clickBtn = () => {
-  queryGoodsById(1)
-  Dialog.confirm({
-    title: '标题',
-    message: '代码是写出来给人看的，附带能在机器上运行。',
-  })
+  notify.success('立即订阅')
 }
 
 </script>

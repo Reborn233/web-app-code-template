@@ -5,8 +5,12 @@
 declare module 'vue' {
   export interface GlobalComponents {
     AppItem: typeof import('./components/app-item/index.vue')['default']
+    AppPage: typeof import('./components/app-page/index.vue')['default']
     AppSection: typeof import('./components/app-section/index.vue')['default']
     HelloWorld: typeof import('./components/HelloWorld.vue')['default']
+    VanList: typeof import('vant/es')['List']
+    VanPullRefresh: typeof import('vant/es')['PullRefresh']
+    VanSkeleton: typeof import('vant/es')['Skeleton']
   }
 }
 

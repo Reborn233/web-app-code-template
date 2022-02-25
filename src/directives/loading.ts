@@ -18,9 +18,9 @@ function hasNode(parent: Element, el: Element) {
 
 const toggleLoading = (el: Element, binding: DirectiveBinding<any>) => {
   if (binding.value) {
-    el.appendChild(instance.$el)
+    instance.$el && el.appendChild(instance.$el)
   } else {
-    el.removeChild(instance.$el)
+    instance.$el && el.removeChild(instance.$el)
   }
 };
 
