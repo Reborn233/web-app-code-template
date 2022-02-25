@@ -30,10 +30,17 @@
 
 <script setup lang="ts">
 import { useGoods } from './query'
+import { useMessage } from '/@/hooks/useMessage'
 const { goods, loading, queryGoodsById } = useGoods()
+
+const { Dialog } = useMessage()
 
 const clickBtn = () => {
   queryGoodsById(1)
+  Dialog.confirm({
+    title: '标题',
+    message: '代码是写出来给人看的，附带能在机器上运行。',
+  })
 }
 
 </script>
