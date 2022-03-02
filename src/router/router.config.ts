@@ -10,19 +10,19 @@ export const accessRoutes: RouteRecordRaw[] = [
     }
   },
   {
-    path: '/todos',
-    name: 'todos',
-    component: () => import('/@/pages/todos/index.vue'),
-    meta: {
-      auth: ['ANY']
-    }
-  },
-  {
-    path: '/goods',
+    path: '/goods/:id',
     name: 'goods',
     component: () => import('/@/pages/goods/index.vue'),
     meta: {
-      auth: ['ANY']
+      isWhiteList: true
+    }
+  },
+  {
+    path: '/subscription/:id',
+    name: 'subscription',
+    component: () => import('/@/pages/subscription/index.vue'),
+    meta: {
+      isWhiteList: true
     }
   }
 ]

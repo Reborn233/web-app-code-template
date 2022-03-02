@@ -1,9 +1,31 @@
-.app-button {
-  border-radius: 20px;
-  border: none;
-  padding: 8px 24px;
+.buttonDisabled {
   &:disabled {
     background-color: $PRIMARY-0;
+    pointer-events: none;
+  }
+}
+.buttonActive {
+  &:active {
+    background-color: $PRIMARY-DARK;
+  }
+}
+.app-button {
+  border-radius: 20px;
+  font-size: 15px;
+  border: none;
+  padding: 8px 24px;
+  @extend .buttonDisabled;
+}
+.app-button--text {
+  color: $PRIMARY;
+  font-size: 15px;
+  border: none;
+  background-color: transparent;
+  &:active {
+    color: $PRIMARY-DARK;
+  }
+  &:disabled {
+    color: $PRIMARY-0;
     pointer-events: none;
   }
 }
@@ -11,7 +33,10 @@
   background-color: $PRIMARY;
   color: #fff;
   width: 300px;
-  &:active {
-    background-color: $PRIMARY-DARK;
-  }
+  @extend .buttonActive;
+}
+.app-link {
+  color: $PRIMARY;
+  text-decoration: none;
+  font-size: 15px;
 }

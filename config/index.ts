@@ -10,14 +10,14 @@ export const APP_TITLE = 'signature-app';
 export const VITE_PORT = 3000;
 
 // prefix
-export const API_PREFIX = '/api';
+export const API_PREFIX = '/sign';
 
 // serve
-export const API_BASE_URL = '/api';
-export const API_TARGET_URL = 'http://localhost:3000';
+export const API_BASE_URL = '/sign';
+export const API_TARGET_URL = 'http://10.180.8.65:8012';
 
 // mock
-export const MOCK_API_BASE_URL = '/mock/api';
+export const MOCK_API_BASE_URL = '/mock/sign';
 export const MOCK_API_TARGET_URL = 'http://localhost:3000';
 
 // 包依赖分析

@@ -1,7 +1,7 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import { router } from './router'
-import 'lib-flexible'
+import 'amfe-flexible/index'
 import { store } from './store';
 import './router/permission';
 import { setupGlobDirectives } from './directives';

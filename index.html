@@ -1,15 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
     <meta charset="UTF-8" />
+    <meta name="referrer" content="no-referrer" />
     <link rel="icon" href="/favicon.ico" />
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no"
     />
-    <title>Vite App</title>
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <!-- 忽略页面对手机号、邮件的识别 -->
+    <meta name="format-detection" content="telephone=no, email=no" />
+    <title></title>
   </head>
   <body>
+    <noscript>
+      <strong
+        >We're sorry but auto-cli3 doesn't work properly without JavaScript
+        enabled. Please enable it to continue.</strong
+      >
+    </noscript>
     <div id="app"></div>
     <script type="module" src="/src/main.ts"></script>
   </body>

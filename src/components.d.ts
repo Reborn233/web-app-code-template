@@ -8,9 +8,15 @@ declare module 'vue' {
     AppPage: typeof import('./components/app-page/index.vue')['default']
     AppSection: typeof import('./components/app-section/index.vue')['default']
     HelloWorld: typeof import('./components/HelloWorld.vue')['default']
+    VanCell: typeof import('vant/es')['Cell']
+    VanCellGroup: typeof import('vant/es')['CellGroup']
+    VanEmpty: typeof import('vant/es')['Empty']
+    VanField: typeof import('vant/es')['Field']
     VanList: typeof import('vant/es')['List']
+    VanPopup: typeof import('vant/es')['Popup']
     VanPullRefresh: typeof import('vant/es')['PullRefresh']
-    VanSkeleton: typeof import('vant/es')['Skeleton']
+    VanRadio: typeof import('vant/es')['Radio']
+    VanRadioGroup: typeof import('vant/es')['RadioGroup']
   }
 }
 

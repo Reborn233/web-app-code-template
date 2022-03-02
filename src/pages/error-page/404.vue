@@ -1,3 +1,4 @@
 <template>
-  <h1>404 页面没找到~</h1>
+  <van-empty image="search"
+             description="页面丢了!" />
 </template>

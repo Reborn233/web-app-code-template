@@ -1,6 +1,7 @@
 import {
   Notify,
-  Dialog
+  Dialog,
+  Toast
 } from 'vant'
 
 export interface NotifyApi {
@@ -35,6 +36,7 @@ Dialog.setDefaultOptions({
 export function useMessage() {
   return {
     notify: notifyApi,
-    Dialog
+    Dialog,
+    Toast
   }
 }

@@ -1,0 +1,4 @@
+export enum CHANNEL_TYPE {
+  TL = 10701005,
+  ALIPAY = 10701009
+}
