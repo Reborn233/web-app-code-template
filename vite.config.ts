@@ -1,19 +1,23 @@
-import { UserConfig, ConfigEnv } from 'vite';
-import { resolve } from 'path';
-import { createVitePlugins } from './config/vite/plugin';
-import proxy from './config/vite/proxy';
-import { VITE_PORT } from './config/index';
+import { UserConfig, ConfigEnv } from 'vite'
+import { resolve } from 'path'
+import { createVitePlugins } from './config/vite/plugin'
+import proxy from './config/vite/proxy'
+import { VITE_PORT } from './config/index'
 
 function pathResolve(dir: string) {
-  return resolve(process.cwd(), '.', dir);
+  return resolve(process.cwd(), '.', dir)
 }
+
 
 // https://vitejs.dev/config/
 export default ({ command, mode }: ConfigEnv): UserConfig => {
   console.log(command, mode)
-
+  const BASE = mode === 'development' ? '/' : '/sign/'
   return {
-    base: '/sign/',
+    base: BASE,
+    build: {
+      assetsDir: 'static'
+    },
     plugins: createVitePlugins(),
     resolve: {
       alias: [
