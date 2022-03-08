@@ -1,5 +1,5 @@
 <template>
-  <app-page>
+  <app-page v-title='`订阅`'>
     <van-cell-group style="margin-top: 50px;">
       <van-field v-model="form.accountNo"
                  label="银行卡"
@@ -61,6 +61,6 @@ const { form, smsCode, clickSendSms, next, text, disabled } = useForm(initFormVa
 <style lang="scss" scoped>
 .action {
   text-align: center;
-  margin-top: 220px;
+  margin-top: 200px;
 }
 </style>

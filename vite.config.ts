@@ -13,6 +13,7 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
   console.log(command, mode)
 
   return {
+    base: '/sign/',
     plugins: createVitePlugins(),
     resolve: {
       alias: [

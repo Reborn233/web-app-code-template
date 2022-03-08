@@ -6,31 +6,27 @@ export function useChannel() {
   const show = ref(false)
   const channel = ref(0)
   const channels: Ref<IChannel[]> = ref([])
-  const { Toast } = useMessage()
+  const { Loading } = useMessage()
 
 
   const getSubscribeProductChannel = async (id: number, callback?: Function) => {
+    Loading.show()
     try {
-      Toast.loading({
-        message: '请稍等...',
-        forbidClick: true,
-        duration: 0
-      })
       const _data = await api_getSubscribeProductChannel(id)
       const list = _data.content
       const len = list.length
       if (len === 1) {
-        const tlChannel = list[0].channel
-        callback && callback(tlChannel)
+        const channel = list[0].channel
+        callback && callback(channel)
       }
       else {
-        show.value = true
         channels.value = list
+        show.value = true
       }
     } catch (error) {
 
     }
-    Toast.clear()
+    Loading.hide()
   }
 
   return {

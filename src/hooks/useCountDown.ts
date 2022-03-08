@@ -11,7 +11,6 @@ export function useCountDown() {
 
 
   const start = () => {
-    console.log(disabled.value)
     if (disabled.value) return
     disabled.value = true
     countDown()
@@ -34,6 +33,10 @@ export function useCountDown() {
       reset()
     }
   }
+
+  onUnmounted(() => {
+    reset()
+  })
 
   return {
     start,

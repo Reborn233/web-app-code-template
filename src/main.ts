@@ -9,9 +9,9 @@ import './styles/index.scss'
 const app = createApp(App)
 setupGlobDirectives(app)
 
-if (import.meta.env.VITE_APP_ENV === 'development') {
-  import('../mock/index')
-}
+// if (import.meta.env.VITE_APP_ENV === 'development') {
+//   import('../mock/index')
+// }
 
 
 app.use(store)

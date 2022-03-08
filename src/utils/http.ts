@@ -1,10 +1,10 @@
-import { ContentTypeEnum } from './../enums/http-enums'
+import { useMessage } from '/@/hooks/useMessage';
 import axios from 'axios'
 import { isString } from './is'
-import { Toast } from 'vant'
 import { ResultEnum, ResponseTypeEnum } from '../enums/http-enums'
 import { Result } from '/#/axios'
 import qs from 'qs'
+const { Toast } = useMessage()
 
 
 // 设置http get请求不缓存

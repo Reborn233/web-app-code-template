@@ -33,10 +33,31 @@ Dialog.setDefaultOptions({
   confirmButtonColor: '#47cec6'
 })
 
+Toast.allowMultiple()
+Toast.setDefaultOptions({
+  duration: 2000,
+  forbidClick: true
+});
+
+const Loading = {
+  show(message = '请稍等...') {
+    Toast.loading({
+      message: message,
+      forbidClick: true,
+      duration: 0
+    })
+  },
+  hide() {
+    Toast.clear()
+  }
+}
+
+
 export function useMessage() {
   return {
     notify: notifyApi,
     Dialog,
-    Toast
+    Toast,
+    Loading
   }
 }

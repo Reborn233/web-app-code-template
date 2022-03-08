@@ -1,4 +1,4 @@
-import { IGoods, ISms, ISign, IChannel } from './mode'
+import { IGoods, ISms, ISign, IChannel, IReqSign } from './mode'
 import { GateResult } from '/#/axios'
 import http from '/@/utils/http'
 
@@ -16,4 +16,4 @@ export const api_queryGoodsById = async (id: number): Promise<GateResult<IGoods>
 
 export const api_sendSms = async (params: ISms) => http.post(URL.sendSms, params)
 
-export const api_getSignUrl = async (params: ISign) => http.post(URL.sign, params)
+export const api_getSignUrl = async (params: ISign): Promise<GateResult<IReqSign>> => http.post(URL.sign, params)

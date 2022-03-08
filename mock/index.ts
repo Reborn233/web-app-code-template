@@ -53,3 +53,18 @@ Mock.mock(new RegExp(URL.getSubscribeProductChannel), 'post', () => {
     }
   ])
 });
+
+Mock.mock(new RegExp(URL.sendSms), 'post', () => {
+  return resultSuccess({
+    protocolContractId: 1000047
+  }, true)
+});
+
+Mock.mock(new RegExp(URL.sign), 'post', () => {
+  return resultSuccess({
+    signChannel: 10701005,
+    signStatus: 2,
+    signUrl: null,
+    nextDeductionDate: '2022-03-08'
+  })
+});

@@ -1,5 +1,6 @@
 <template>
   <app-page ref="page"
+            v-title='title'
             v-loading='loading'
             :error-message='errorMessage'
             @errorRefresh='query'>
@@ -27,8 +28,12 @@
       </app-section>
     </div>
     <div class="action">
-      <button class="app-button app-button__primary"
+      <button v-if='showSignBtn'
+              class="app-button app-button__primary"
               @click="next">立即订阅</button>
+      <button v-else
+              disabled
+              class="app-button app-button__primary">该产品{{showSignStatusText}}</button>
     </div>
 
     <!--  -->
@@ -39,12 +44,9 @@
         <van-cell-group inset
                         v-for="item of channels"
                         :key="item.channel">
-          <van-cell :title="item.channel_name"
+          <van-cell :title="item.channelName"
                     clickable
                     @click="clickChannel(item.channel)">
-            <template #right-icon>
-              <van-radio :name="item.channel" />
-            </template>
           </van-cell>
         </van-cell-group>
       </van-radio-group>
@@ -56,13 +58,17 @@
 import { useGoods } from './query'
 import { useChannel } from './useChannel'
 import { CHANNEL_TYPE } from '/@/enums/dict'
+import { useMessage } from '/@/hooks/useMessage'
+import { isWeChat } from '/@/utils/navigator'
 
 const route = useRoute()
 const router = useRouter()
-const { goods, loading, errorMessage, queryGoodsById } = useGoods()
-
+const { showSignBtn, showSignStatusText, goods, loading, errorMessage, queryGoodsById, aliPaySign } = useGoods()
+const { Toast } = useMessage()
 
 const id = Number(route.params.id)
+
+const title = computed(() => goods.value.productName)
 
 const query = () => {
   id && queryGoodsById(id)
@@ -80,6 +86,7 @@ const next = () => {
 }
 
 const clickChannel = (channel: number) => {
+  show.value = false
   if (channel === CHANNEL_TYPE.TL) {
     router.push({
       name: 'subscription',
@@ -92,14 +99,13 @@ const clickChannel = (channel: number) => {
     })
   }
   else {
-    aliPaySign()
+    if (isWeChat()) {
+      Toast.fail('请使用自带浏览器或支付宝打开此页面!')
+      return
+    }
+    aliPaySign(id)
   }
 }
-
-const aliPaySign = () => {
-  console.log('支付宝签约')
-}
-
 
 </script>
 
@@ -115,7 +121,7 @@ const aliPaySign = () => {
 }
 
 .action {
-  margin-top: 175px;
+  margin-top: 150px;
   text-align: center;
 }
 

@@ -14,7 +14,7 @@ export const API_PREFIX = '/sign';
 
 // serve
 export const API_BASE_URL = '/sign';
-export const API_TARGET_URL = 'http://10.180.8.65:8012';
+export const API_TARGET_URL = 'http://10.180.8.20:8012';
 
 // mock
 export const MOCK_API_BASE_URL = '/mock/sign';

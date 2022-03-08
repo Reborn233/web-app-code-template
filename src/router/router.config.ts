@@ -24,6 +24,14 @@ export const accessRoutes: RouteRecordRaw[] = [
     meta: {
       isWhiteList: true
     }
+  },
+  {
+    path: '/subscriptionSuccess',
+    name: 'subscriptionSuccess',
+    component: () => import('/@/pages/subscription/success.vue'),
+    meta: {
+      isWhiteList: true
+    }
   }
 ]
 

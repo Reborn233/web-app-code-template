@@ -1,14 +1,15 @@
 export interface IGoods {
-  id: number | null,
+  signId: number | null,
   reqNo: string,
   productName: string,
   productDesc: string,
-  productPrice: number
+  productPrice: number,
+  signStatus: number
 }
 
 export interface IChannel {
   channel: number,
-  channel_name: string
+  channelName: string
 }
 
 export interface ISms {
@@ -23,5 +24,14 @@ export interface ISms {
 export interface ISign {
   signId: number | null,
   signChannel: number
-  smsCode: number | string
+  smsCode?: number | string
+}
+
+export interface IReqSign {
+  signChannel: number,
+  signStatus: number
+  signUrl: string | null,
+  currentDeductionTime: string,
+  deductionStatus: number,
+  nextDeductionDate: string
 }

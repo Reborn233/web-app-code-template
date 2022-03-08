@@ -6,6 +6,7 @@
                  :image-size="200"
                  :description="errorMessage || '未知错误'">
         <a class="app-link"
+           style="margin-top: 30px;"
            @click="clickRefresh">刷新</a>
       </van-empty>
     </div>
