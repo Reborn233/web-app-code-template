@@ -22,12 +22,13 @@
         </template>
       </van-nav-bar>
     </template>
+    <!--  -->
     <van-pull-refresh v-model="refreshing"
                       @refresh="onRefresh">
       <van-list v-model:loading="loading"
                 :finished="finished"
                 finished-text="到底啦!"
-                @load="queryData">
+                @load="onLoad">
         <div style="margin-top: 12px;">
           <app-section :title='`报案号：${item.reportNo}`'
                        v-for="item of clue"
@@ -68,12 +69,11 @@ import { useClueStore } from "/@/store/modules/clue"
 import { useLoading } from "/@/hooks/useLoading"
 import { useRefresh } from "/@/hooks/useRefresh"
 import { usePagination } from "/@/hooks/usePagination"
-
 const router = useRouter()
 
 const { setClue } = useClueStore()
 const { loading, finished, stopLoading, finishLoading, resetLoading } = useLoading()
-const { refreshing, stopRefreshing } = useRefresh()
+const { refreshing, stopRefreshing, sleep } = useRefresh()
 
 const { buildPageParams, setFirstPage, setNextPage } = usePagination()
 
@@ -91,30 +91,27 @@ const onRefresh = async () => {
   const params = buildPageParams({
     date: date.value
   })
-  console.log(params)
   try {
     const _data = await api_queryClueOrderList(params)
-    setTimeout(() => {
-      clue.value = _data.resultList || []
-      stopRefreshing()
-      if (clue.value.length >= _data.totalCount) {
-        finishLoading()
-      }
-      else {
-        setNextPage()
-        stopLoading()
-      }
-    }, 1000)
+    await sleep()
+    resetLoading()
+    clue.value = _data.resultList || []
+    if (clue.value.length >= _data.totalCount) {
+      finishLoading()
+    }
+    else {
+      setNextPage()
+    }
+
   } catch (error) {
   }
-  resetLoading()
+  stopRefreshing()
 }
 
-const queryData = async () => {
+const onLoad = async () => {
   const params = buildPageParams({
     date: date.value
   })
-  console.log(params)
   try {
     const _data = await api_queryClueOrderList(params)
     const list: IClue[] = _data.resultList || []
@@ -124,7 +121,6 @@ const queryData = async () => {
     }
     else {
       setNextPage()
-      stopLoading()
     }
   } catch (error) {
 
