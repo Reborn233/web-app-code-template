@@ -1,15 +1,16 @@
 
-import styleImport from 'vite-plugin-style-import'
+import styleImport, { VantResolve } from 'vite-plugin-style-import'
 
 export function configStyleImportPlugin() {
   const styleImportPlugin = styleImport({
-    libs: [
-      {
-        libraryName: 'vant',
-        esModule: true,
-        resolveStyle: (name) => `vant/es/${name}/style`,
-      },
-    ],
+    resolves: [VantResolve()]
+    // libs: [
+    //   {
+    //     libraryName: 'vant',
+    //     esModule: true,
+    //     resolveStyle: (name) => `vant/es/${name}/style`,
+    //   },
+    // ],
   })
   return styleImportPlugin
 }

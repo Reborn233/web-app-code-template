@@ -3,34 +3,44 @@ import type { RouteRecordRaw } from 'vue-router';
 export const accessRoutes: RouteRecordRaw[] = [
   {
     path: '/',
-    name: 'home',
-    component: () => import('/@/pages/home.vue'),
+    redirect: '/message',
+    component: () => import('/@/pages/layout/tabbar-view.vue'),
     meta: {
-      isWhiteList: true
-    }
+      roles: ['ANY']
+    },
+    children: [
+      {
+        path: 'message',
+        name: 'message',
+        component: () => import('/@/pages/message/index.vue'),
+        meta: {
+          roles: ['ANY']
+        }
+      },
+      {
+        path: 'clue',
+        name: 'clue',
+        component: () => import('/@/pages/clue/index.vue'),
+        meta: {
+          roles: ['ANY']
+        }
+      },
+      {
+        path: 'statistics',
+        name: 'statistics',
+        component: () => import('/@/pages/statistics/index.vue'),
+        meta: {
+          roles: ['ANY']
+        }
+      }
+    ]
   },
   {
-    path: '/goods/:id',
-    name: 'goods',
-    component: () => import('/@/pages/goods/index.vue'),
+    path: '/clue/:id',
+    name: 'clueDetail',
+    component: () => import('/@/pages/clue/detail.vue'),
     meta: {
-      isWhiteList: true
-    }
-  },
-  {
-    path: '/subscription/:id',
-    name: 'subscription',
-    component: () => import('/@/pages/subscription/index.vue'),
-    meta: {
-      isWhiteList: true
-    }
-  },
-  {
-    path: '/subscriptionSuccess',
-    name: 'subscriptionSuccess',
-    component: () => import('/@/pages/subscription/success.vue'),
-    meta: {
-      isWhiteList: true
+      roles: ['ANY']
     }
   }
 ]
@@ -38,12 +48,21 @@ export const accessRoutes: RouteRecordRaw[] = [
 export const publicRoutes = [
   {
     path: '/:pathMatch(.*)',
-    redirect: '/404',
+    redirect: '/404'
   },
   {
     path: '/404',
-    component: () => import('/@/pages/error-page/404.vue'),
+    component: () => import('/@/pages/error-page/404.vue'), meta: {
+      isWhiteList: true
+    }
   },
+  {
+    path: '/noPermission',
+    component: () => import('/@/pages/error-page/no-permission.vue'),
+    meta: {
+      isWhiteList: true
+    }
+  }
 ]
 
 export default [

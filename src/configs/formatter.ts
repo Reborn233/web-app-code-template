@@ -1,10 +1,15 @@
-import { SIGN_STATUS_LIST, FEE_STATUS_LIST } from './index';
-export function formatterFeeStatus(value: number) {
-  const _res = FEE_STATUS_LIST.find(fee => fee.value === value)
+import { REPAIR_STATUS_LIST, ORDER_SOURCE_LIST, CLUE_STATUS_LIST } from './index';
+export function formatterRepairStatus(value: number) {
+  const _res = REPAIR_STATUS_LIST.find(item => item.value === value)
   return _res ? _res.label : '-'
 }
 
-export function formatterSignStatus(value: number) {
-  const _res = SIGN_STATUS_LIST.find(sign => sign.value === value)
+export function formatterOrderSource(value: number) {
+  const _res = ORDER_SOURCE_LIST.find(item => item.value === value)
+  return _res ? _res.label : '-'
+}
+
+export function formatterClueStatus(value: number) {
+  const _res = CLUE_STATUS_LIST.find(item => item.value === value)
   return _res ? _res.label : '-'
 }

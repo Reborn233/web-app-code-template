@@ -1,37 +1,33 @@
 import { ResultEnum } from './../src/enums/http-enums';
 export function resultSuccess<T>(content?: T, merge = false) {
-  if (merge) {
-    return {
-      code: ResultEnum.SUCCESS,
-      data: {
-        gateReturnType: ResultEnum.GATE_SUCCESS,
-        gateReturnMessage: '获取数据成功',
-        ...content
-      },
-      message: 'success'
-    };
-  }
-  else {
-    return {
-      code: ResultEnum.SUCCESS,
-      data: {
-        gateReturnType: ResultEnum.GATE_SUCCESS,
-        gateReturnMessage: '获取数据成功',
-        content
-      },
-      message: 'success'
-    };
-  }
+  return {
+    code: ResultEnum.SUCCESS,
+    content,
+    message: 'success',
+    succeeded: true
+  };
+}
+
+export function resultPageSuccess<T>(content?: T) {
+  return {
+    code: ResultEnum.SUCCESS,
+    content: {
+      pageSize: 10,
+      currentPage: 1,
+      begin: 0,
+      end: 10,
+      totalCount: 2,
+      resultList: content
+    },
+    message: 'success',
+    succeeded: true
+  };
 }
 
 export function resultError(message = 'Request failed', { code = ResultEnum.ERROR, content = null } = {}) {
   return {
     code,
-    data: {
-      gateReturnType: ResultEnum.GATE_SUCCESS,
-      gateReturnMessage: message,
-      content
-    },
+    content,
     message
   };
 }

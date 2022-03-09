@@ -1,96 +1,42 @@
 <template>
-  <div class="page"
+  <div class="app-page"
        :style="{backgroundColor:bgColor}">
-    <div v-if="errorMessage">
-      <van-empty image="error"
-                 :image-size="200"
-                 :description="errorMessage || '未知错误'">
-        <a class="app-link"
-           style="margin-top: 30px;"
-           @click="clickRefresh">刷新</a>
-      </van-empty>
+    <div class="app-page__navbar">
+      <slot name="navbar"></slot>
     </div>
-    <div v-else>
-      <van-pull-refresh v-if="enableRefresh"
-                        v-model="refreshing"
-                        v-bind="refreshOtpion"
-                        style="min-height: 100%;"
-                        @refresh="onRefresh">
-        <van-list v-if="enableLoading"
-                  v-model:loading="loading"
-                  :finished="finished"
-                  finished-text="打底啦!"
-                  v-bind="loadingOtpion"
-                  @load="onLoad">
-          <slot></slot>
-        </van-list>
-        <slot v-else></slot>
-      </van-pull-refresh>
+    <div class="app-page__panel">
+      <div v-if="errorMessage">
+        <van-empty image="error"
+                   :image-size="200"
+                   :description="errorMessage || '未知错误'">
+          <a class="app-link"
+             style="margin-top: 30px;"
+             @click="clickRefresh">刷新</a>
+        </van-empty>
+      </div>
       <slot v-else></slot>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { PullRefresh } from 'vant';
 export default defineComponent({
   name: 'appPage',
-  component: [PullRefresh],
-  emits: ['onRefresh', 'onLoad', 'errorRefresh'],
   props: {
-    enableRefresh: Boolean,
-    enableLoading: Boolean,
-    refreshOtpion: Object,
-    loadingOtpion: Object,
     bgColor: {
       type: String,
-      default: '#fff'
+      default: '#f8f8f8'
     },
     errorMessage: String
   },
   setup(props, context) {
-    const refreshing = ref(false)
-    const loading = ref(false)
-    const finished = ref(false)
-
-    const onRefresh = () => {
-      context.emit('onRefresh')
-    }
 
     const clickRefresh = () => {
       context.emit('errorRefresh')
     }
 
-    const stopRefreshing = () => refreshing.value = false
-
-    const onLoad = () => {
-      context.emit('onLoad')
-    }
-
-    const stopLoading = () => loading.value = false
-
-    const resetLoading = () => {
-      loading.value = false
-      finished.value = false
-    }
-
-    const finishLoading = () => {
-      loading.value = false
-      finished.value = true
-    }
-
     return {
-      clickRefresh,
-      refreshOtpion: props.refreshOtpion,
-      refreshing,
-      onRefresh,
-      stopRefreshing,
-      loading,
-      finished,
-      onLoad,
-      stopLoading,
-      resetLoading,
-      finishLoading
+      clickRefresh
     }
   }
 })
@@ -98,11 +44,36 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-.page {
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-  &::-webkit-scrollbar {
-    display: none;
+.app-page {
+  position: relative;
+  background-color: #f8f8f8;
+  font-size: 16px;
+  font-family: 'PingFangSC Regular';
+  box-sizing: border-box;
+  height: 100%;
+  color: $TEXT-COLOR;
+  overflow: hidden;
+
+  &__navbar {
+    position: absolute;
+    z-index: 500;
+    top: 0;
+    width: 100%;
+    background-color: #fafafa;
   }
+  &__panel {
+    box-sizing: border-box;
+    height: 100%;
+    padding-bottom: 50px;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+}
+.app-page__navbar + .app-page__panel {
+  padding-top: 50px;
+  padding-bottom: 0;
 }
 </style>

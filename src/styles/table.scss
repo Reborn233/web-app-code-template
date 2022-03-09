@@ -1,0 +1,17 @@
+.table {
+  width: 100%;
+  border: 1px solid $TEXT-COLOR-2;
+  color: #333;
+  border-collapse: collapse;
+  margin-bottom: 15px;
+  > thead {
+    background-color: #f8f8f8;
+  }
+  td,
+  th {
+    padding: 10px;
+    vertical-align: top;
+    border: 1px solid $TEXT-COLOR-2;
+    color: #333;
+  }
+}

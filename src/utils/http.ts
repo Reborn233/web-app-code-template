@@ -1,17 +1,20 @@
-import { useMessage } from '/@/hooks/useMessage';
+import { useMessage } from '/@/hooks/useMessage'
 import axios from 'axios'
 import { isString } from './is'
 import { ResultEnum, ResponseTypeEnum } from '../enums/http-enums'
 import { Result } from '/#/axios'
-import qs from 'qs'
+import { useUserStore } from '/@/store/modules/user'
 const { Toast } = useMessage()
+const userStore = useUserStore()
 
 
 // 设置http get请求不缓存
 axios.defaults.headers.get['Cache-Control'] = 'no-cache'
 axios.defaults.headers.get['Pragma'] = 'no-cache'
 
-const http = axios.create()
+const http = axios.create({
+  baseURL: '/autocloud'
+})
 
 /**
  * 拼接
@@ -20,10 +23,10 @@ const http = axios.create()
 function appendToken(url: string | undefined) {
   if (!url || !isString(url)) return url
   if (url.indexOf('?') > -1) {
-    url = `${url}&_=${+new Date()}`
+    url = `${url}&token=${userStore.getToken}`
   }
   else {
-    url = `${url}?_=${+new Date()}`
+    url = `${url}?token=${userStore.getToken}`
   }
   return url
 }
@@ -31,11 +34,8 @@ function appendToken(url: string | undefined) {
 // 请求前进行拦截
 http.interceptors.request.use(
   config => {
-    // req.url = appendToken(req.url)
+    config.url = appendToken(config.url)
     // 在这里对config进行统一处理
-    if (config.method === 'post') {
-      config.data = qs.stringify(config.data)
-    }
     return config
   },
   error => {
@@ -50,18 +50,12 @@ http.interceptors.response.use(
       return Promise.resolve(res.data)
     }
     let _data: Result = res.data
-    if (_data.code === ResultEnum.SUCCESS && _data.data.gateReturnType === ResultEnum.GATE_SUCCESS) {
-      return Promise.resolve(_data.data)
+    if (_data.code === ResultEnum.SUCCESS) {
+      return Promise.resolve(_data.content)
     }
     else {
-      if (_data.code !== ResultEnum.SUCCESS) {
-        Toast.fail(_data.message)
-        return Promise.reject(_data.message)
-      }
-      if (_data.data.gateReturnType !== ResultEnum.GATE_SUCCESS) {
-        Toast.fail(_data.data.gateReturnMessage)
-        return Promise.reject(_data.data.gateReturnMessage)
-      }
+      Toast.fail(_data.message)
+      return Promise.reject(_data.message)
     }
   },
   error => {

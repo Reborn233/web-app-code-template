@@ -1,4 +1,15 @@
 :root {
   --van-green: #47cec6;
   --van-red: #ff5151;
+  --van-primary-color: var(--van-green);
+}
+
+.van-icon__primary {
+  color: $PRIMARY;
+}
+.van-icon__default {
+  color: $TEXT-COLOR-0;
+}
+.van-tabs__line {
+  background: $PRIMARY !important;
 }

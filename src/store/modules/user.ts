@@ -18,7 +18,7 @@ interface IUserState {
 export const userStore = defineStore('user', {
   state: (): IUserState => {
     return {
-      token: 'sadkakldjla',
+      token: '1e78cd9c-e279-4030-9225-e9eb88f44f50',
       userInfo: null
     }
   },
@@ -52,6 +52,6 @@ export const userStore = defineStore('user', {
   }
 })
 
-export function userStoreWithOut() {
+export function useUserStore() {
   return userStore(store)
 }

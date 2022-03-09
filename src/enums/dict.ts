@@ -1,20 +1,26 @@
-export enum CHANNEL_TYPE {
-  TL = 10701005,
-  ALIPAY = 10701009
+export enum REPAIR_STATUS {
+  GO = 10331002, // 送修
+  BACK = 10331001 // 返修
 }
 
-export enum SIGN_STATUS {
-  WAIT = 0, // 待签约
-  DOING = 1, // 签约中
-  SUCCESS = 2, // 签约成功
-  CANCELING = 3, // 解约中
-  CANCELED = 4 // 已解约
+export enum ORDER_SOURCE {
+  SELF = 10341001,
+  RECOMMEND = 10341002,
+  OUT = 10341003,
+  PUSH = 10341004,
+  NOT_NOTE = 10341005
 }
 
-export enum FEE_STATUS {
-  WAIT = 10, // 待扣费
-  DOING = 20, // 扣费中
-  SUCCESS = 30, // 扣费成功
-  REFUND = 40, // 退款中
-  REFUND_SUCCESS = 50 // 退款成功
+export enum CLUE_STATUS {
+  WAIT_ALLOT = 10351001,
+  WAIT_FOLLOW = 10351002,
+  FOLLOWING = 10351003,
+  BOOK = 10351004,
+  ARRIVCE = 10351005,
+  LOSE = 10351006
+}
+
+export enum PROCESS_TYPE {
+  TIME = 0,
+  USER = 1
 }

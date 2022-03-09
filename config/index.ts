@@ -4,20 +4,20 @@
  */
 
 // 应用名
-export const APP_TITLE = 'signature-app';
+export const APP_TITLE = 'car-repair-app';
 
 // 本地服务端口
 export const VITE_PORT = 3000;
 
 // prefix
-export const API_PREFIX = '/sign';
+export const API_PREFIX = '/autocloud';
 
 // serve
-export const API_BASE_URL = '/sign';
-export const API_TARGET_URL = 'http://10.180.8.20:8012';
+export const API_BASE_URL = '/autocloud';
+export const API_TARGET_URL = 'http://test1-repair.ops.yonyouauto.com';
 
 // mock
-export const MOCK_API_BASE_URL = '/mock/sign';
+export const MOCK_API_BASE_URL = '/mock/autocloud';
 export const MOCK_API_TARGET_URL = 'http://localhost:3000';
 
 // 包依赖分析

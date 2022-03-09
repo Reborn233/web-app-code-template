@@ -1,47 +1,62 @@
-import { FEE_STATUS, SIGN_STATUS } from './../enums/dict';
+import { REPAIR_STATUS, ORDER_SOURCE, CLUE_STATUS } from './../enums/dict';
 
-export const SIGN_STATUS_LIST = [
+export const REPAIR_STATUS_LIST = [
   {
-    label: '待签约',
-    value: SIGN_STATUS.WAIT
+    label: '送修',
+    value: REPAIR_STATUS.GO
   },
   {
-    label: '签约中',
-    value: SIGN_STATUS.DOING
-  },
-  {
-    label: '已签约',
-    value: SIGN_STATUS.SUCCESS
-  },
-  {
-    label: '解约中',
-    value: SIGN_STATUS.CANCELING
-  },
-  {
-    label: '已解约',
-    value: SIGN_STATUS.CANCELED
+    label: '返修',
+    value: REPAIR_STATUS.BACK
   }
 ]
 
-export const FEE_STATUS_LIST = [
+export const ORDER_SOURCE_LIST = [
   {
-    label: '待扣费',
-    value: FEE_STATUS.WAIT
+    label: '客户自行到店',
+    value: ORDER_SOURCE.SELF
   },
   {
-    label: '扣费中',
-    value: FEE_STATUS.DOING
+    label: '推荐到店',
+    value: ORDER_SOURCE.RECOMMEND
   },
   {
-    label: '扣费成功',
-    value: FEE_STATUS.SUCCESS
+    label: '外拓',
+    value: ORDER_SOURCE.OUT
   },
   {
-    label: '退款中',
-    value: FEE_STATUS.REFUND
+    label: '保险公司短信推送',
+    value: ORDER_SOURCE.PUSH
   },
   {
-    label: '退款成功',
-    value: FEE_STATUS.REFUND_SUCCESS
+    label: '保险公司非短信通知',
+    value: ORDER_SOURCE.NOT_NOTE
+  }
+]
+
+export const CLUE_STATUS_LIST = [
+  {
+    label: '待分配',
+    value: CLUE_STATUS.WAIT_ALLOT
+  },
+  {
+    label: '待跟进',
+    value: CLUE_STATUS.WAIT_FOLLOW
+  },
+  {
+    label: '跟进中',
+    value: CLUE_STATUS.FOLLOWING
+  },
+  {
+    label: '预约到店',
+    value: CLUE_STATUS.BOOK
+  },
+  {
+    label: '车辆到店',
+    value: CLUE_STATUS.ARRIVCE
+  },
+  {
+    label: '流失',
+    value: CLUE_STATUS.LOSE
   }
 ]

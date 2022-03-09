@@ -22,6 +22,8 @@ defineProps({
 .app-section {
   padding: 0 12px;
   padding-left: 0;
+  background-color: #fff;
+  margin-bottom: 12px;
 }
 .app-section__hd {
   position: relative;
@@ -47,7 +49,7 @@ defineProps({
   border-bottom: 1px solid $TEXT-COLOR-2;
   transform-origin: 0 100%;
   transform: scaleY(0.5);
-  z-index: 2;
+  z-index: 1;
 }
 
 .app-section__title {
@@ -61,5 +63,6 @@ defineProps({
 .app-section__bd {
   padding-left: 12px;
   padding-top: 12px;
+  overflow: hidden;
 }
 </style>

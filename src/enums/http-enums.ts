@@ -2,12 +2,10 @@
  * @description: Request result set
  */
 export enum ResultEnum {
-  SUCCESS = '91200',
-  GATE_SUCCESS = 'S',
-  ERROR = '91300',
-  GATE_ERROR = 'E',
+  SUCCESS = '000000',
+  ERROR = '999999',
   TIMEOUT = '100002',
-  MSG_SUCCESS = 'ok',
+  MSG_SUCCESS = 'succeess',
 }
 
 /**

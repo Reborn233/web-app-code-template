@@ -4,30 +4,26 @@
  */
 
 import { router } from '.';
-// import { userStoreWithOut } from '/@/store/modules/user';
+import { useUserStore } from '/@/store/modules/user';
 
-// const permissioStore = userStoreWithOut();
+const permissioStore = useUserStore();
 
 router.beforeEach(async (to: any, _, next) => {
-  next()
-  // const hasToken = permissioStore.getToken;
-  // if (hasToken) {
-  //   if (to.path === '/') {
-  //     next();
-  //   } else {
-  //     const userInfo = permissioStore.getUserInfo;
-  //     if (userInfo) {
-  //       next();
-  //     } else {
-  //       await permissioStore.fetchUserInfo();
-  //       next({ ...to, replace: true });
-  //     }
-  //   }
-  // } else {
-  //   if (to.meta.isWhiteList) {
-  //     next();
-  //   } else {
-  //     next('/home');
-  //   }
-  // }
+  const hasToken = !!permissioStore.getToken;
+  if (hasToken) {
+    const userInfo = permissioStore.getUserInfo;
+    if (userInfo) {
+      next();
+    } else {
+      await permissioStore.fetchUserInfo();
+      next({ ...to, replace: true });
+    }
+  } else {
+    if (to.meta.isWhiteList) {
+      console.log('isWhiteList')
+      next();
+    } else {
+      next('/noPermission');
+    }
+  }
 });
