@@ -24,6 +24,7 @@ defineProps({
   padding-left: 0;
   background-color: #fff;
   margin-bottom: 12px;
+  font-size: 16px;
 }
 .app-section__hd {
   position: relative;
@@ -54,7 +55,6 @@ defineProps({
 
 .app-section__title {
   float: left;
-  font-size: 16px;
   color: $TEXT-COLOR;
 }
 

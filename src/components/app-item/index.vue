@@ -39,6 +39,7 @@ const styles = computed(() => {
 .app-item {
   overflow: hidden;
   line-height: 2;
+  font-size: 15px;
 }
 
 .app-item__label {
