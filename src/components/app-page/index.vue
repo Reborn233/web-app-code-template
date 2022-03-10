@@ -1,7 +1,8 @@
 <template>
   <div class="app-page"
        :style="{backgroundColor:bgColor}">
-    <div class="app-page__navbar">
+    <div class="app-page__navbar"
+         v-if="$slots.navbar">
       <slot name="navbar"></slot>
     </div>
     <div class="app-page__panel">
@@ -15,6 +16,10 @@
         </van-empty>
       </div>
       <slot v-else></slot>
+    </div>
+    <div class="app-page__tabbar"
+         v-if="$slots.tabbar">
+      <slot name="tabbar"></slot>
     </div>
   </div>
 </template>
@@ -47,33 +52,36 @@ export default defineComponent({
 .app-page {
   position: relative;
   background-color: #f8f8f8;
-  font-size: 16px;
   font-family: 'PingFangSC Regular';
   box-sizing: border-box;
   height: 100%;
   color: $TEXT-COLOR;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
 
   &__navbar {
-    position: absolute;
+    position: relative;
     z-index: 500;
-    top: 0;
-    width: 100%;
-    background-color: #fafafa;
+    background-color: #fff;
+    padding-top: constant(safe-area-inset-top);
+    // padding-top: env(safe-area-inset-top);
   }
   &__panel {
     box-sizing: border-box;
-    height: 100%;
-    padding-bottom: 50px;
-    overflow: auto;
+    flex: 1;
+    overflow-y: auto;
     -webkit-overflow-scrolling: touch;
     &::-webkit-scrollbar {
       display: none;
     }
   }
-}
-.app-page__navbar + .app-page__panel {
-  padding-top: 50px;
-  padding-bottom: 0;
+
+  &__tabbar {
+    display: flex;
+    position: relative;
+    z-index: 500;
+    background-color: #fff;
+  }
 }
 </style>

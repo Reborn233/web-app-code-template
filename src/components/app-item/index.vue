@@ -1,13 +1,14 @@
 <template>
   <div class="app-item">
     <div class="app-item__label"
-         :style="{width: `${labelWidth}px`}">{{label}}</div>
+         :style="styles">{{label}}</div>
     <div class="app-item__value"
          :class="align">{{value}}</div>
   </div>
 </template>
 
 <script setup lang="ts">
+
 defineProps({
   label: String,
   value: String,
@@ -21,6 +22,15 @@ defineProps({
       return ['left', 'center', 'right'].indexOf(val) !== -1;
     },
     default: 'left'
+  }
+})
+
+const instance = getCurrentInstance()
+const styles = computed(() => {
+  const labelWidth = instance?.parent?.attrs['label-width']
+  const width = labelWidth ? labelWidth : instance?.props.labelWidth
+  return {
+    width: `${width}px`
   }
 })
 </script>

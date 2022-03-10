@@ -54,6 +54,7 @@ defineProps({
 
 .app-section__title {
   float: left;
+  font-size: 16px;
   color: $TEXT-COLOR;
 }
 
@@ -63,6 +64,7 @@ defineProps({
 .app-section__bd {
   padding-left: 12px;
   padding-top: 12px;
+  padding-bottom: 12px;
   overflow: hidden;
 }
 </style>
