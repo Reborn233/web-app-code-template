@@ -3,7 +3,9 @@
     <template #navbar>
       <van-nav-bar title="消息" />
     </template>
-    <message-list :data='list'></message-list>
+    <div>
+      <message-list :data='list'></message-list>
+    </div>
   </app-page>
 </template>
 <script setup lang="ts">

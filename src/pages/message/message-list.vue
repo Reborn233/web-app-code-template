@@ -13,7 +13,7 @@
       <div class="message-item__content">
         <div class="row">
           <div class="type">{{item.type}}</div>
-          <div class="date">{{item.date}}</div>
+          <div class="date">{{dateDiff(item.date)}}</div>
         </div>
         <div class="row">
           <div class="desc">{{item.plateNo}} {{item.brand}}</div>
@@ -24,11 +24,22 @@
 </template>
 
 <script lang="ts">
+import { getDateDiff } from "/@/utils/date"
+
 export default defineComponent({
   props: {
     data: {
       type: Array as () => any[],
       default: () => []
+    }
+  },
+  setup() {
+    const dateDiff = (date: any) => {
+      return getDateDiff(date)
+    }
+
+    return {
+      dateDiff
     }
   }
 })
@@ -37,6 +48,7 @@ export default defineComponent({
 <style lang="scss" scoped>
 .message {
   position: relative;
+  margin-top: 12px;
   &-item {
     display: flex;
     padding: 12px 15px;
