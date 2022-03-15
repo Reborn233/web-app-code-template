@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { IClue } from '/@/apis/clue/mode'
+import { IClue } from '../../apis/clue/model.d'
 import { store } from '/@/store';
 
 type TClue = IClue | null

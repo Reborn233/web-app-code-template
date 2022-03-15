@@ -12,6 +12,21 @@ $WARN-COLOR: #fab31b;
 $ICON-COLOR-0: #73e6e0;
 $ICON-COLOR-1: #0f1741;
 
+.top-line {
+  position: relative;
+  &::after {
+    content: ' ';
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    height: 1px;
+    border-top: 1px solid $TEXT-COLOR-2;
+    transform-origin: 0 100%;
+    transform: scaleY(0.5);
+    z-index: 1;
+  }
+}
 .bottom-line {
   position: relative;
   &::after {

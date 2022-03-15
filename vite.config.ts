@@ -10,9 +10,8 @@ function pathResolve(dir: string) {
 
 export default ({ command, mode }: ConfigEnv): UserConfig => {
   console.log(command, mode)
-  const BASE = mode === 'development' ? '/' : '/sign/'
   return {
-    base: BASE,
+    base: '/',
     build: {
       assetsDir: 'static'
     },

@@ -3,27 +3,41 @@
  * @description 全局路由过滤、权限过滤
  */
 
-import { router } from '.';
-import { useUserStore } from '/@/store/modules/user';
-
-const permissioStore = useUserStore();
+import { isWxWork } from '../utils/navigator'
+import { router } from './index'
+import { useUserStore } from '/@/store/modules/user'
 
 router.beforeEach(async (to: any, _, next) => {
-  const hasToken = !!permissioStore.getToken;
-  if (hasToken) {
-    const userInfo = permissioStore.getUserInfo;
-    if (userInfo) {
-      next();
-    } else {
-      await permissioStore.fetchUserInfo();
-      next({ ...to, replace: true });
+  if (!isWxWork()) {
+    if (to.name === 'error') {
+      next()
+    }
+    else {
+      next({
+        name: 'error',
+        query: {
+          message: '请在企业微信中打开'
+        }
+      })
     }
   } else {
-    if (to.meta.isWhiteList) {
-      console.log('isWhiteList')
-      next();
+    const permissioStore = useUserStore()
+    const hasToken = !!permissioStore.getToken
+    if (hasToken) {
+      const userInfo = permissioStore.getUserInfo
+      if (userInfo) {
+        next()
+      } else {
+        await permissioStore.fetchUserInfo()
+        next({ ...to, replace: true })
+      }
     } else {
-      next('/noPermission');
+      if (to.meta.isWhiteList) {
+        next()
+      } else {
+        next('/noPermission')
+      }
     }
   }
-});
+
+})

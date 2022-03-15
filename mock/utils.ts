@@ -1,5 +1,5 @@
 import { ResultEnum } from './../src/enums/http-enums';
-export function resultSuccess<T>(content?: T, merge = false) {
+export function resultSuccess<T>(content?: T) {
   return {
     code: ResultEnum.SUCCESS,
     content,

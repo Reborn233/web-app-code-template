@@ -52,7 +52,16 @@ export const publicRoutes = [
   },
   {
     path: '/404',
-    component: () => import('/@/pages/error-page/404.vue'), meta: {
+    component: () => import('/@/pages/error-page/404.vue'),
+    meta: {
+      isWhiteList: true
+    }
+  },
+  {
+    path: '/error',
+    name: 'error',
+    component: () => import('/@/pages/error-page/index.vue'),
+    meta: {
       isWhiteList: true
     }
   },

@@ -9,6 +9,7 @@ body {
 #app {
   height: 100%;
   width: 100%;
+  font-size: 16px;
 }
 * {
   margin: 0;
@@ -20,6 +21,9 @@ body {
 
 .container {
   padding: 0 12px;
+}
+.page-bd {
+  margin-top: 12px;
 }
 .page__desc {
   margin-top: 10px;
@@ -43,6 +47,7 @@ body {
   position: relative;
 }
 .required::after {
+  font-size: 13px;
   content: '*';
   position: absolute;
   left: 5px;

@@ -7,3 +7,15 @@ export function alink(href: string) {
   a.click()
   document.body.removeChild(a)
 }
+
+export function getUrlParams(url = window.location.href) {
+  return Object.assign(
+    // @ts-ignore
+    ...url.match(/([^?=&]+)(=([^&]*))?/g).map((m) => {
+      let [f, v] = m.split('=');
+      return {
+        [f]: v
+      };
+    })
+  );
+}

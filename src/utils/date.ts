@@ -1,79 +1,26 @@
-type TDate = Date | string | number
-/**
- * 日期转换
- * @param {Number|Date|String} time 时间
- * @param {String} ftm 转换格式
- *  转换格式有：
- *    YYYY: 年
- *    MM: 月
- *    DD: 日
- *    HH: 小时
- *    mm: 分钟
- *    ss: 秒
- */
-export function formatDate(time: TDate, fmt = 'YYYY-MM-DD') {
-  if (!time) return '';
-  let _time = new Date(time);
-  let o = {
-    'M+': _time.getMonth() + 1, // 月份
-    'D+': _time.getDate(), // 日
-    'H+': _time.getHours(), // 小时
-    'm+': _time.getMinutes(), // 分
-    's+': _time.getSeconds(), // 秒
-    'q+': Math.floor((_time.getMonth() + 3) / 3), // 季度
-    S: _time.getMilliseconds() // 毫秒
-  };
-  if (/(Y+)/.test(fmt)) {
-    fmt = fmt.replace(
-      RegExp.$1,
-      (_time.getFullYear() + '').substr(4 - RegExp.$1.length)
-    );
-  }
-  for (let k in o) {
-    if (new RegExp('(' + k + ')').test(fmt)) {
-      fmt = fmt.replace(
-        RegExp.$1,
-        // @ts-ignore
-        RegExp.$1.length === 1 ? o[k] : ('00' + o[k]).substr(('' + o[k]).length)
-      );
-    }
-  }
-  return fmt;
+import dayjs from 'dayjs'
+import relativeTime from 'dayjs/plugin/relativeTime'
+import 'dayjs/locale/zh'
+
+type TDate = string | number | Date
+
+export const formatDate = (date: TDate, format: string = 'YYYY-MM-DD HH:mm:ss') => {
+  return dayjs(date).format(format)
 }
 
-/**
- * 获取当月有多少天
- * @param {String | Number | Date} time 日期
- */
-export function getCurrentMonthDays(time: TDate) {
-  let _time = new Date(time);
-  return new Date(_time.getFullYear(), _time.getMonth() + 1, 0).getDate();
+export const getDateDiff = (date: TDate) => {
+  dayjs.extend(relativeTime)
+  dayjs.locale('zh')
+  const now = dayjs()
+  const d = dayjs(date)
+
+  return now.to(d)
 }
 
-/**
- * 获取两个日期的相差天数
- * @param {String | Number | Date} date1 开始日期
- * @param {String | Number | Date} date2 结束日期
- */
-export function getDiffDays(date1: TDate, date2: TDate) {
-  if (!date1 || !date2) {
-    return -1;
-  }
-  let _d1 = new Date(date1).getTime(),
-    _d2 = new Date(date2).getTime();
-  const ONE_DAY = 24 * 60 * 60 * 1000; // 一天的毫秒数
-  return Math.abs(Math.floor((_d2 - _d1) / ONE_DAY));
-}
+export const now = () => dayjs().format('YYYY-MM-DD HH:mm:ss')
 
-/**
- *  获取当前日期是星期几
- * @param {String | Number | Date} time 日期
- * @param {String} prefix 前缀
- */
-export function getWeekDay(time: TDate, prefix = '星期') {
-  if (!time) {
-    return '';
-  }
-  const week = ['日', '一', '二', '三', '四', '五', '六'];
-  return `${prefix}${week[new Date(time).getDay()]}`;
+export const getCurrentMonthDays = (): string[] => {
+  const start = dayjs().format('YYYY-MM-01')
+  const end = dayjs().format('YYYY-MM-DD')
+  return [start, end]
 }

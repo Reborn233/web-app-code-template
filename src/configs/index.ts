@@ -1,4 +1,4 @@
-import { REPAIR_STATUS, ORDER_SOURCE, CLUE_STATUS } from './../enums/dict';
+import { REPAIR_STATUS, ORDER_SOURCE, CLUE_STATUS, ARRIVE_TYPE } from './../enums/dict';
 
 export const REPAIR_STATUS_LIST = [
   {
@@ -53,10 +53,64 @@ export const CLUE_STATUS_LIST = [
   },
   {
     label: '车辆到店',
-    value: CLUE_STATUS.ARRIVCE
+    value: CLUE_STATUS.ARRIVE
   },
   {
     label: '流失',
     value: CLUE_STATUS.LOSE
+  }
+]
+
+export const ARRIVE_TYPE_LIST = [
+  {
+    label: '自行到店',
+    value: ARRIVE_TYPE.SELF
+  },
+  {
+    label: '接车到店',
+    value: ARRIVE_TYPE.PICK
+  }
+]
+
+export const LOSS_REASON_LIST = [
+  {
+    label: '去其他厂',
+    value: 10371001
+  },
+  {
+    label: '个人原因',
+    value: 10371002
+  },
+  {
+    label: '店面价格高',
+    value: 10371003
+  },
+  {
+    label: '非本店保险',
+    value: 10371004
+  },
+  {
+    label: '单位车他人推荐维修点',
+    value: 10371005
+  },
+  {
+    label: '非本店购车',
+    value: 10371006
+  },
+  {
+    label: '店面时效性低',
+    value: 10371007
+  },
+  {
+    label: '店面服务差',
+    value: 10371008
+  },
+  {
+    label: '损失小',
+    value: 10371009
+  },
+  {
+    label: '距离远',
+    value: 10371010
   }
 ]

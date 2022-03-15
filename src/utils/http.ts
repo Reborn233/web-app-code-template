@@ -3,10 +3,8 @@ import axios from 'axios'
 import { isString } from './is'
 import { ResultEnum, ResponseTypeEnum } from '../enums/http-enums'
 import { Result } from '/#/axios'
-import { useUserStore } from '/@/store/modules/user'
+import { useUserStore } from '../store/modules/user'
 const { Toast } = useMessage()
-const userStore = useUserStore()
-
 
 // 设置http get请求不缓存
 axios.defaults.headers.get['Cache-Control'] = 'no-cache'
@@ -21,12 +19,13 @@ const http = axios.create({
  * @param {String} url 请求路径
  */
 function appendToken(url: string | undefined) {
+  const { getToken } = useUserStore()
   if (!url || !isString(url)) return url
   if (url.indexOf('?') > -1) {
-    url = `${url}&token=${userStore.getToken}`
+    url = `${url}&token=${getToken}`
   }
   else {
-    url = `${url}?token=${userStore.getToken}`
+    url = `${url}?token=${getToken}`
   }
   return url
 }
@@ -34,6 +33,9 @@ function appendToken(url: string | undefined) {
 // 请求前进行拦截
 http.interceptors.request.use(
   config => {
+    if (import.meta.env.DEV) {
+      config.params && console.log(config.params)
+    }
     config.url = appendToken(config.url)
     // 在这里对config进行统一处理
     return config

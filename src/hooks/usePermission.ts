@@ -17,7 +17,7 @@ export function usePermission() {
     }
     console.log(value)
 
-    const roles = permissioStore.userInfo?.roles || []
+    const roles = permissioStore.userInfo?.privilegeCodes || []
     if (!isArray(value)) {
       return roles.includes(value);
     }

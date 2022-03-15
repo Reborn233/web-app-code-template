@@ -42,13 +42,12 @@ export default defineComponent({
     box-sizing: border-box;
     height: 100%;
     padding-bottom: 50px;
-    overflow: auto;
-    -webkit-overflow-scrolling: touch;
+    overflow: hidden;
   }
   .app-tabbar {
     display: flex;
     position: absolute;
-    z-index: 500;
+    z-index: 10;
     bottom: 0;
     width: 100%;
     background-color: #f7f7fa;
